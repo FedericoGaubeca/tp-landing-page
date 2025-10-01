@@ -19,33 +19,6 @@ $text-secondary: #a1a1aa;
   box-sizing: border-box;
 }
 
-/* reset general */
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-/* todas las secciones full width */
-section {
-  width: 100%;
-  padding: 80px 0;   /* solo arriba/abajo */
-  box-sizing: border-box;
-}
-
-/* para contenido centrado */
-.section-card,
-.hero-section,
-.about-section,
-.vision-section,
-.benefits-section {
-  max-width: 1200px;   /* ancho máximo del contenido */
-  margin: 0 auto;
-  padding: 0 0px;     /* espacio interno solo en el contenido */
-}
-
-
 html {
   scroll-behavior: smooth;
 }
@@ -53,22 +26,20 @@ html {
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.6;
-  background: $dark-surface;
+  color: $text-primary;
+  background: $dark-bg;
   overflow-x: hidden;
-  margin: 0;
-  padding: 0;
 }
 
 section {
   min-height: 100vh;
   width: 100%;
-  padding: 8rem 2rem;
+  padding: 6rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  position: relative;
 }
 
 // Navigation
@@ -165,10 +136,11 @@ section {
 
 // Hero Section
 .hero-section {
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
   position: relative;
   overflow: hidden;
   width: 100%;
-  padding: 100px 10% 120px 10%;
+  padding: 8rem 2rem;
 
   &::before {
     content: '';
@@ -177,7 +149,7 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background: radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
     pointer-events: none;
   }
 
@@ -437,6 +409,7 @@ section {
 
 // About Section
 .about-section {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
   width: 100%;
 
   .about-content {
@@ -509,6 +482,7 @@ section {
     content: '';
     position: absolute;
     inset: 0;
+    background: rgba(15, 15, 35, 0.85);
   }
 
   .vision-content {
@@ -534,6 +508,7 @@ section {
           top: 50px;
           width: 2px;
           height: 60px;
+          background: linear-gradient(to bottom, $primary-color, transparent);
         }
 
         &.active .roadmap-dot {
@@ -607,6 +582,7 @@ section {
 
 // Benefits Section
 .benefits-section {
+  background: $dark-surface;
   width: 100%;
 
   .benefits-grid {
@@ -1050,14 +1026,13 @@ section {
 .fade-section {
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 
   &.show {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
 
 // Scroll indicator
 .scroll-indicator {
@@ -1107,7 +1082,7 @@ section {
     grid-template-columns: 1fr;
     text-align: center;
     gap: 2rem;
-    padding: 100px 10% 120px 10%;
+    padding: 6rem 1rem;
 
     .hero-stats {
       justify-content: center;
@@ -1144,8 +1119,7 @@ section {
   }
 
   section {
-    padding: 80px 5%; // arriba-abajo 80px, costados 5%
-    box-sizing: border-box;
+    padding: 4rem 1rem;
   }
 
   .section-card {
