@@ -345,33 +345,46 @@ section {
       justify-content: center;
       gap: 2rem;
 
-      .scanning-frame {
-        position: relative;
-        width: 200px;
-        height: 200px;
-        border: 2px solid $primary-color;
+    .scanning-frame {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      border: 2px solid $primary-color;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden; // This is crucial to keep the image inside the circle
+
+      .face-image {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; // Ensures the image covers the circle properly
         border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        .scan-corners {
-          position: absolute;
-          inset: -10px;
-          border: 3px solid transparent;
-          border-top-color: $accent-color;
-          border-right-color: $accent-color;
-          border-radius: 50%;
-          animation: rotate 2s linear infinite;
-        }
-
-        .scan-line {
-          width: 80%;
-          height: 2px;
-          background: linear-gradient(90deg, transparent, $primary-color, transparent);
-          animation: scan 1.5s ease-in-out infinite;
-        }
+        z-index: 1;
       }
+
+      .scan-corners {
+        position: absolute;
+        inset: -10px;
+        border: 3px solid transparent;
+        border-top-color: $accent-color;
+        border-right-color: $accent-color;
+        border-radius: 50%;
+        animation: rotate 2s linear infinite;
+        z-index: 2; // Places corners above the image
+      }
+
+      .scan-line {
+        position: absolute;
+        width: 80%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, $primary-color, transparent);
+        animation: scan 1.5s ease-in-out infinite;
+        z-index: 3; // Places scan line above everything
+      }
+    } 
 
       .status-indicator {
         display: flex;
@@ -602,6 +615,191 @@ section {
         }
       }
     }
+  }
+}
+
+// Tech Section
+.tech-section {
+  width: 100%;
+
+  .tech-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .tech-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 4rem;
+
+      .spec-category {
+        background: $glass-bg;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 2rem;
+        border-radius: 20px;
+        backdrop-filter: blur(20px);
+
+        h3 {
+          font-size: 1.5rem;
+          margin-bottom: 1.5rem;
+          color: $text-primary;
+          border-bottom: 2px solid $primary-color;
+          padding-bottom: 0.75rem;
+        }
+
+        .spec-list {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+
+          .spec-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+
+            &:hover {
+              background: rgba(99, 102, 241, 0.1);
+              transform: translateX(5px);
+            }
+
+            .spec-label {
+              color: $text-secondary;
+              font-size: 0.95rem;
+            }
+
+            .spec-value {
+              color: $accent-color;
+              font-weight: 600;
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+    }
+
+    .tech-requirements {
+      margin-bottom: 3rem;
+
+      h3 {
+        font-size: 1.75rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        color: $text-primary;
+      }
+
+      .requirements-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+
+        .requirement-card {
+          background: $glass-bg;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          padding: 2rem;
+          border-radius: 16px;
+          backdrop-filter: blur(20px);
+          text-align: center;
+          transition: all 0.3s ease;
+
+          &:hover {
+            transform: translateY(-5px);
+            border-color: $primary-color;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+          }
+
+          .req-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, $primary-color, $secondary-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+          }
+
+          h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: $text-primary;
+          }
+
+          ul {
+            list-style: none;
+            text-align: left;
+
+            li {
+              color: $text-secondary;
+              margin: 0.75rem 0;
+              padding-left: 1.5rem;
+              position: relative;
+              font-size: 0.9rem;
+
+              &::before {
+                content: '▸';
+                position: absolute;
+                left: 0;
+                color: $primary-color;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .integration-info {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+      border: 1px solid $primary-color;
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(20px);
+
+      .integration-badge {
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+
+        svg {
+          color: $accent-color;
+          flex-shrink: 0;
+        }
+
+        h4 {
+          font-size: 1.25rem;
+          color: $text-primary;
+          margin-bottom: 0.5rem;
+        }
+
+        p {
+          color: $text-secondary;
+          line-height: 1.6;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+
+// Responsive updates
+@media (max-width: 768px) {
+  .tech-specs {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  .requirements-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .integration-badge {
+    flex-direction: column !important;
+    text-align: center !important;
   }
 }
 
